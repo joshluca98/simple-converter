@@ -15,6 +15,10 @@ internal static class Converter
         else
         {
             Console.WriteLine("Conversion would begin now.");
+            Console.WriteLine($"Output Path:\t{Program.outputPath}");
+            Console.WriteLine($"File Path:\t{Program.filePath}");
+            Console.WriteLine($"File Type:\t{Program.oldFileType}");
+            Console.WriteLine($"New File Type:\t{Program.newFileType}\n");
             Console.ReadLine();
         }
     }
