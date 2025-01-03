@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "simple-converter-console": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)"
+    }
+  }
+}
