@@ -27,10 +27,7 @@ internal static class Helper
         using (OpenFileDialog fileDialog = new())
         {
             DialogResult result = fileDialog.ShowDialog();
-            if (result == DialogResult.OK)
-            {
-                return fileDialog.FileName;
-            }
+            if (result == DialogResult.OK){ return fileDialog.FileName; }
             return "?";
         }
     }
@@ -44,15 +41,12 @@ internal static class Helper
             { "mp3", "Audio" },
             { "wav", "Audio" },
             { "flac", "Audio" },
-            { "jpg", "Image" },
-            { "png", "Image" },
-            { "bmp", "Image" },
+            { "aac", "Audio" },
         };
 
         Dictionary<string, List<string>> ConversionOptions = new()
         {
-            { "Audio", new List<string> { "mp3", "wav", "flac" } },
-            { "Image", new List<string> { "jpg", "png", "bmp" } },
+            { "Audio", new List<string> { "mp3", "wav", "flac", "aac" } },
         };
 
         if (!FileTypeCategories.TryGetValue(oldFileType, out string category))
@@ -77,6 +71,12 @@ internal static class Helper
 
     internal static string SelectNewFileType()
     {
+        if (Program.outputPath == null || Program.filePath == "?" || Program.oldFileType == "?")
+        {
+            Console.WriteLine("Error: Missing parameters. Press ENTER to return to menu..");
+            Console.ReadLine();
+            return "?";
+        }
         List<string> newFileTypes = GenerateNewFileTypes(Program.oldFileType);
 
         var newFileType = AnsiConsole.Prompt(
@@ -85,5 +85,12 @@ internal static class Helper
             .AddChoices(newFileTypes));
 
         return newFileType;
+    }
+
+    internal static void ResetFileVariables()
+    {
+        Program.filePath = "?";
+        Program.oldFileType = "?";
+        Program.newFileType = "?";
     }
 }

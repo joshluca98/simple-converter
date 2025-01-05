@@ -1,4 +1,5 @@
 ﻿using Spectre.Console;
+using System.ComponentModel.DataAnnotations;
 namespace simple_converter_console;
 
 internal static class UserInterface
@@ -7,30 +8,40 @@ internal static class UserInterface
     {
         while (true)
         {
+            string[] menuChoices = { 
+                "Select Input File",
+                "Select Output Directory",
+                "Select Output File Type",
+                "\n-Start Conversion-" 
+            };
+
             Console.Clear();
             Console.WriteLine($"Output Path:\t{Program.outputPath}");
-            Console.WriteLine($"File Path:\t{Program.filePath}");
-            Console.WriteLine($"File Type:\t{Program.oldFileType}");
-            Console.WriteLine($"New File Type:\t{Program.newFileType}\n");
+            Console.WriteLine($"Input File Path:\t{Program.filePath}");
+            Console.WriteLine($"Input File Type:\t{Program.oldFileType}");
+            Console.WriteLine($"Output File Type:\t{Program.newFileType}\n");
+            
             var menuChoice = AnsiConsole.Prompt(
-                new SelectionPrompt<MenuAction>()
-                .AddChoices(Enum.GetValues<MenuAction>()));
+                new SelectionPrompt<string>()
+                .AddChoices( menuChoices )
+            );
 
             switch (menuChoice)
             {
-                case MenuAction.ChooseFile:
+                case "Select Input File":
                     Program.filePath = Helper.ChooseFile();
-                    Program.oldFileType = Path.GetExtension(Program.filePath).TrimStart('.');
+                    if(Program.filePath != "?") { Program.oldFileType = Path.GetExtension(Program.filePath).TrimStart('.'); }
                     break;
-                case MenuAction.ChooseOutputDirectory:
+                case "Select Output Directory":
                     Program.outputPath = Helper.ChooseDirectory();
                     break;
-                case MenuAction.ChooseNewFileType:
+                case "Select Output File Type":
                     Program.newFileType = Helper.SelectNewFileType();
                     break;
-                case MenuAction.StartConvert:
+                case "\n-Start Conversion-":
                     Converter.Start();
                     break;
+                
             }
         }
     }

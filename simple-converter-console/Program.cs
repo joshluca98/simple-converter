@@ -1,5 +1,4 @@
-﻿
-using simple_converter_console;
+﻿using simple_converter_console;
 
 internal class Program
 {
@@ -8,11 +7,9 @@ internal class Program
     public static string oldFileType { get; set; } = "?";
     public static string newFileType { get; set; } = "?";
 
-
     [STAThread]
     static void Main(string[] args)
     {
         UserInterface.userMenu();
-        
     }
 }
