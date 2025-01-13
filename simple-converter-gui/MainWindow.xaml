@@ -1,0 +1,73 @@
+﻿<Window x:Class="simple_converter_gui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:simple_converter_gui"
+        mc:Ignorable="d"
+        Title="Simple Audio Converter - jluca98" Height="300" Width="700">
+    
+
+    <Grid Margin="15">
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35" />
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+       
+
+        <!-- Column 0 -->
+        <Button Margin="3" Padding="5" Grid.Row="0" Grid.Column="0" Click="OutputButton_Click" >
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            Output Directory
+        </Button>
+
+        <Button Margin="3" Padding="5" Grid.Row="1" Grid.Column="0" Click="InputButton_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            Input File
+        </Button>
+
+        <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Content="Old File Type:" VerticalAlignment="Center"/>
+        <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Center" Content="New File Type:" VerticalAlignment="Center"/>
+
+        <!-- Column 1 -->
+        <TextBox FontSize="14"  Grid.Row="0" Grid.Column="1" Margin="5" Padding="2" HorizontalAlignment="Stretch" Text="{Binding OutputPath}" VerticalAlignment="Center"/>
+        <TextBox FontSize="14" Grid.Row="1" Grid.Column="1" Margin="5" Padding="2" HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="{Binding FilePath}" VerticalAlignment="Center"/>
+        <Border Grid.Row="2" Grid.Column="1" Margin="5" BorderThickness="0.5" BorderBrush="DimGray" HorizontalAlignment="Left" Width="auto">
+            <Label Padding="2" FontSize="14" Content="{Binding OldFileType}" VerticalAlignment="Center"/>
+        </Border>
+        
+        <Label  Grid.Row="3" Grid.Column="1"  HorizontalAlignment="Stretch" Content="{Binding NewFileType}" VerticalAlignment="Center"/>
+
+        <ComboBox Name="newFileTypesCombo" Width="auto" HorizontalAlignment="Left" FontSize="14" Grid.Row="3" Grid.Column="1" Margin="5" Padding="2" SelectionChanged="ComboBoxFileTypes_SelectionChanged"/>
+
+
+        <Button Margin="3" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" Width="85" Click="ConvertButton_Click">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Button.Resources>
+            Convert
+        </Button>
+
+    </Grid>
+
+</Window>

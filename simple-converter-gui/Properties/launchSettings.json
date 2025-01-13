@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "simple-converter-gui": {
+      "commandName": "Project",
+      "workingDirectory": "$(ProjectDir)"
+    }
+  }
+}
